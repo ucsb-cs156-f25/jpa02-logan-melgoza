@@ -28,7 +28,7 @@ public class TeamTest {
     }
 
     @Test
-    public void equals_sameObject() {
+    public void testEquals_sameObject() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -36,7 +36,7 @@ public class TeamTest {
     }
 
     @Test 
-    public void equals_differentObject() {
+    public void testEquals_differentObject() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -45,7 +45,7 @@ public class TeamTest {
     }
 
     @Test 
-    public void equals_noDifference() {
+    public void testEquals_noDifference() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -56,7 +56,7 @@ public class TeamTest {
     }
 
     @Test  
-    public void equals_differentName() {
+    public void testEquals_differentName() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -67,7 +67,7 @@ public class TeamTest {
     }
 
     @Test  
-    public void equals_differentMembers() {
+    public void testEquals_differentMembers() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -78,7 +78,7 @@ public class TeamTest {
     }
 
     @Test 
-    public void equals_differentNameDifferentMembers() {
+    public void testEquals_differentNameDifferentMembers() {
         Team t1 = new Team("F1");
         t1.addMember("Max");
         t1.addMember("Charles");
@@ -86,5 +86,23 @@ public class TeamTest {
         t2.addMember("Arvid");
         t2.addMember("Pepe");
         assertEquals(t1.equals(t2), false);
+    }
+
+    @Test
+    public void testHashCode_noDifference() {
+        Team t1 = new Team("foo");
+        t1.addMember("bar");
+        Team t2 = new Team("foo");
+        t2.addMember("bar");
+        assertEquals(t1.hashCode(), t2.hashCode());
+    }
+
+    @Test
+    public void testHashCode_expectedValue() {
+        Team t1 = new Team("foo");
+        t1.addMember("bar");
+        int result = t1.hashCode();
+        int expectedResult = 130294;
+        assertEquals(expectedResult, result);
     }
 }
